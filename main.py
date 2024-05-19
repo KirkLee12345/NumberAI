@@ -167,7 +167,9 @@ def query_by_image():
     img_data = 255.0 - img_array.reshape(784)
     img_data = (img_data / 255.0 * 0.99) + 0.01
 
-    return numpy.argmax(n.query(img_data))
+    r = n.query(img_data)
+    ac = r[numpy.argmax(r)] / r.sum()
+    return numpy.argmax(r), ac
 
 
 def help_list():
@@ -214,7 +216,8 @@ while True:
     if x == 5:
         del n
         n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+        print("重置完成")
     if x == 6:
-        r = query_by_image()
-        print("识别结果为： " + str(r))
+        r, ac = query_by_image()
+        print("识别结果为： " + str(r) + "  匹配度为： " + str(ac)[1:5])
 
