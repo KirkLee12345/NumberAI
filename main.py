@@ -200,24 +200,27 @@ n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 help_list()
 while True:
     print("请输入：", end='')
-    x = int(input().replace(" ", ""))
-    if x == 0:
+    x = input()
+    if x == "0":
         help_list()
-    if x == 1:
+    elif x == "1":
         start_train()
-    if x == 2:
+    elif x == "2":
         start_test()
-    if x == 3:
+    elif x == "3":
         n.save_data()
         print("保存完成")
-    if x == 4:
+    elif x == "4":
         n.read_data()
         print("读取完成")
-    if x == 5:
+    elif x == "5":
         del n
         n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
         print("重置完成")
-    if x == 6:
+    elif x == "6":
         r, ac = query_by_image()
         print("识别结果为： " + str(r) + "  匹配度为： " + str(ac)[1:5])
+    else:
+        print("程序退出...")
+        break
 
